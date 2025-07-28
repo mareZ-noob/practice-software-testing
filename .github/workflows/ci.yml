@@ -78,7 +78,7 @@ jobs:
       if: always()
       with:
         name: newman-report
-        path: sprint5-with-bugs/API/report.html
+        path: ./report.html
 
     # Bước 9: Dọn dẹp (luôn chạy)
     - name: Cleanup 🧹
