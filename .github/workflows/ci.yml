@@ -67,7 +67,8 @@ jobs:
     - name: Run Newman Tests 🚀
       run: |
         newman run collection.json \
-            -r htmlextra \
+            -d dat.csv \
+            -r htmlextra \  
             --reporter-htmlextra-export report.html \
             --suppress-exit-code
 

@@ -12,15 +12,15 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://api-with-bugs.practicesoftwaretesting.com/products",
-					"protocol": "https",
+					"raw": "http://localhost:8091/products/{{productId}}",
+					"protocol": "http",
 					"host": [
-						"api-with-bugs",
-						"practicesoftwaretesting",
-						"com"
+						"localhost"
 					],
+					"port": "8091",
 					"path": [
-						"products"
+						"products",
+						"{{productId}}"
 					]
 				}
 			},
