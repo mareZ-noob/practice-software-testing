@@ -67,9 +67,8 @@ jobs:
     - name: Run Newman Tests 🚀
       run: |
         newman run collection.json \
-            --folder "Setup" \
             -r htmlextra \
-            --reporter-htmlextra-export ../report.html \
+            --reporter-htmlextra-export report.html \
             --suppress-exit-code
 
     # Bước 8: Upload báo cáo (luôn chạy)
