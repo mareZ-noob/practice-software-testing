@@ -60,8 +60,10 @@ services:
       - "host=localhost"
       - DISABLE_LOGGING=${DISABLE_LOGGING}
 
+
+
   composer:
-    image: composer:latest
+    image: composer:2.6.6
     command: install --no-dev --optimize-autoloader --ignore-platform-req=ext-ffi && chown -R www-data /var/www && chmod 777 /var/www
     volumes_from:
       - laravel-api
