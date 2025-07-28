@@ -1,0 +1,30 @@
+{
+	"info": {
+		"_postman_id": "be3e67ba-8fef-4e64-b907-059422a03794",
+		"name": "Tool",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21686506"
+	},
+	"item": [
+		{
+			"name": "GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://api-with-bugs.practicesoftwaretesting.com/products",
+					"protocol": "https",
+					"host": [
+						"api-with-bugs",
+						"practicesoftwaretesting",
+						"com"
+					],
+					"path": [
+						"products"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
