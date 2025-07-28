@@ -21,9 +21,9 @@ jobs:
     - name: Create Laravel .env file 🔧
       env:
         APP_KEY: 'key'
-        DB_DATABASE: 'laravel'
+        DB_DATABASE: 'toolshop'
         DB_USERNAME: 'root'
-        DB_PASSWORD: ''
+        DB_PASSWORD: 'root'
         JWT_SECRET: 'jwtsecret'
       run: |
         echo "🔧 Creating Laravel .env file from .env.ci template..."
@@ -78,7 +78,7 @@ jobs:
       if: always()
       with:
         name: newman-report
-        path: report.html
+        path: sprint5-with-bugs/API/report.html
 
     # Bước 9: Dọn dẹp (luôn chạy)
     - name: Cleanup 🧹
