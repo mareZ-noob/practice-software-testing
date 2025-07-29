@@ -147,7 +147,7 @@ class InvoiceController extends Controller
             }
 
             $user = app('auth')->user();
-            Mail::to([$user->email])->send(new Checkout($user->first_name . ' ' . $user->last_name, $items, $total,));
+            // Mail::to([$user->email])->send(new Checkout($user->first_name . ' ' . $user->last_name, $items, $total,));
 
             Log::info('Checkout email sent to user.', ['user_email' => $user->email, 'total_amount' => $total]);
         }
