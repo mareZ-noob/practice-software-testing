@@ -24,7 +24,7 @@ jobs:
         DB_DATABASE: 'toolshop'
         DB_USERNAME: 'root'
         DB_PASSWORD: 'root'
-        JWT_SECRET: 'jwtsecret'
+        JWT_SECRET: 'XVVuj9s7byIX8XPNWt0aYOsFjmc4JZQmE2wR7h9IJXoEOWXwk6o6wM8AKUL7jUTy'
       run: |
         echo "🔧 Creating Laravel .env file from .env.ci template..."
         # Lệnh envsubst sẽ đọc file .env.ci, tìm các biến $VAR và thay bằng giá trị từ secrets
