@@ -67,18 +67,30 @@ jobs:
     - name: Run Newman Tests 🚀
       run: |
         newman run collection1.json \
-            -d dat1.csv \
+            -d data1.csv \
             -r htmlextra \
-            --reporter-htmlextra-export report.html \
+            --reporter-htmlextra-export report1.html \
+            --suppress-exit-code
+
+        new run collection2.json \
+            -d data2.csv \
+            -r htmlextra \
+            --reporter-htmlextra-export report2.html \
             --suppress-exit-code
 
     # Bước 8: Upload báo cáo (luôn chạy)
-    - name: Upload Test Report 📊
+    - name: Upload First Test Report 📊
       uses: actions/upload-artifact@v4
       if: always()
       with:
         name: newman-report
-        path: ./report.html
+        path: ./report1.html
+    - name: Upload Second Test Report 📊
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: newman-report
+        path: ./report2.html
 
     # Bước 9: Dọn dẹp (luôn chạy)
     - name: Cleanup 🧹

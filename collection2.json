@@ -1,0 +1,153 @@
+{
+	"info": {
+		"_postman_id": "f2db3a53-cd32-4de6-a115-a60fc65f219c",
+		"name": "API2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21686506"
+	},
+	"item": [
+		{
+			"name": "Log In",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const responseData = pm.response.json();",
+							"",
+							"// 1. Lưu access_token để xác thực",
+							"if (responseData.access_token) {",
+							"    const accessToken = responseData.access_token;",
+							"    pm.environment.set(\"auth_token\", accessToken);",
+							"    console.log(\"Đã lưu token xác thực.\");",
+							"",
+							"    try {",
+							"        // 2. Tách token thành 3 phần (Header, Payload, Signature)",
+							"        const tokenParts = accessToken.split('.');",
+							"        ",
+							"        // 3. Lấy phần payload (phần ở giữa) và giải mã Base64",
+							"        // Hàm atob() có sẵn trong Postman để giải mã Base64",
+							"        const payload = JSON.parse(atob(tokenParts[1]));",
+							"",
+							"        // 4. Trích xuất giá trị 'sub' (chính là user ID) từ payload",
+							"        const userId = payload.sub;",
+							"",
+							"        // 5. Lưu user_id vào biến môi trường",
+							"        if (userId) {",
+							"            pm.environment.set(\"user_id\", userId);",
+							"            console.log(`Đã lưu user_id: ${userId}`);",
+							"        } else {",
+							"            console.error(\"Không tìm thấy 'sub' (user_id) trong payload của token.\");",
+							"        }",
+							"    } catch (e) {",
+							"        console.error(\"Lỗi khi giải mã token:\", e);",
+							"    }",
+							"} else {",
+							"    console.error(\"Không tìm thấy access_token trong response.\");",
+							"}",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/users/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Invoices",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// Lấy số lượng từ file CSV (dữ liệu của iteration hiện tại)",
+							"const quantity = pm.iterationData.get(\"quantity\");",
+							"",
+							"// Lấy đơn giá từ biến môi trường (đã được set bởi request GET)",
+							"const unitPrice = pm.environment.get(\"unit_price\");",
+							"",
+							"// Tính tổng tiền (nhớ chuyển đổi sang số để tính toán)",
+							"const total = parseFloat(quantity) * parseFloat(unitPrice);",
+							"",
+							"// Lưu tổng tiền vào một biến môi trường mới để sử dụng trong body",
+							"pm.environment.set(\"calculated_total\", total.toFixed(2));"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"user_id\": {{user_id}},\n  \"billing_address\": \"{{billing_address}}\",\n  \"billing_city\": \"{{billing_city}}\",\n  \"billing_country\": \"{{billing_country}}\",\n  \"billing_state\": \"{{billing_state}}\",\n  \"billing_postcode\": \"{{billing_postcode}}\",\n  \"total\": {{calculated_total}},\n  \"payment_method\": \"{{payment_method}}\",\n  \"payment_account_name\": \"{{payment_account_name}}\",\n  \"payment_account_number\": \"{{payment_account_number}}\",\n  \"invoice_items\": [\n    {\n      \"product_id\": {{product_id}},\n      \"quantity\": {{quantity}},\n      \"unit_price\": {{unit_price}}\n    }\n  ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8091/invoices/search?q={{q}}",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"invoices",
+						"search"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "{{q}}"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
