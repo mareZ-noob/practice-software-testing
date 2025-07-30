@@ -72,7 +72,7 @@ jobs:
             --reporter-htmlextra-export report1.html \
             --suppress-exit-code
 
-        new run collection2.json \
+        newman run collection2.json \
             -d data2.csv \
             -r htmlextra \
             --reporter-htmlextra-export report2.html \
