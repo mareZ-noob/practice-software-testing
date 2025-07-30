@@ -11,10 +11,10 @@ accounts = [
 
 # 2. The name of the input CSV file.
 #    Make sure you have a file with this name in the same directory as the script.
-input_filename = 'mock2.csv'
+input_filename = 'mock3.csv'
 
 # 3. The name of the output file you want to create
-output_filename = 'data2.csv'
+output_filename = 'data3.csv'
 
 # --- Script Logic ---
 

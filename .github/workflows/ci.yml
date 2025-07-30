@@ -78,6 +78,12 @@ jobs:
             --reporter-htmlextra-export report2.html \
             --suppress-exit-code
 
+        newman run collection3.json \
+            -d data3.csv \
+            -r htmlextra \
+            --reporter-htmlextra-export report3.html \
+            --suppress-exit-code
+
     # Bước 8: Upload báo cáo (luôn chạy)
     - name: Upload First Test Report 📊
       uses: actions/upload-artifact@v4
@@ -91,6 +97,12 @@ jobs:
       with:
         name: newman-report
         path: ./report2.html
+    - name: Upload Third Test Report 📊
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: newman-report
+        path: ./report3.html
 
     # Bước 9: Dọn dẹp (luôn chạy)
     - name: Cleanup 🧹
