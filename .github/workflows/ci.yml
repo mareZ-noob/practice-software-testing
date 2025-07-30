@@ -89,19 +89,19 @@ jobs:
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: newman-report
+        name: newman-report-1
         path: ./report1.html
     - name: Upload Second Test Report 📊
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: newman-report
+        name: newman-report-2
         path: ./report2.html
     - name: Upload Third Test Report 📊
       uses: actions/upload-artifact@v4
       if: always()
       with:
-        name: newman-report
+        name: newman-report-3
         path: ./report3.html
 
     # Bước 9: Dọn dẹp (luôn chạy)
