@@ -1,7 +1,7 @@
 {
 	"info": {
 		"_postman_id": "be3e67ba-8fef-4e64-b907-059422a03794",
-		"name": "Tool",
+		"name": "API1",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21686506"
 	},
@@ -15,13 +15,35 @@
 						"exec": [
 							"const responseData = pm.response.json();",
 							"",
-							"// Kiểm tra xem response có chứa access_token không",
+							"// 1. Lưu access_token để xác thực",
 							"if (responseData.access_token) {",
-							"    // Lưu token vào biến môi trường với tên là 'auth_token'",
-							"    pm.environment.set(\"auth_token\", responseData.access_token);",
-							"    console.log(\"Đã lưu token xác thực thành công!\");",
+							"    const accessToken = responseData.access_token;",
+							"    pm.environment.set(\"auth_token\", accessToken);",
+							"    console.log(\"Đã lưu token xác thực.\");",
+							"",
+							"    try {",
+							"        // 2. Tách token thành 3 phần (Header, Payload, Signature)",
+							"        const tokenParts = accessToken.split('.');",
+							"        ",
+							"        // 3. Lấy phần payload (phần ở giữa) và giải mã Base64",
+							"        // Hàm atob() có sẵn trong Postman để giải mã Base64",
+							"        const payload = JSON.parse(atob(tokenParts[1]));",
+							"",
+							"        // 4. Trích xuất giá trị 'sub' (chính là user ID) từ payload",
+							"        const userId = payload.sub;",
+							"",
+							"        // 5. Lưu user_id vào biến môi trường",
+							"        if (userId) {",
+							"            pm.environment.set(\"user_id\", userId);",
+							"            console.log(`Đã lưu user_id: ${userId}`);",
+							"        } else {",
+							"            console.error(\"Không tìm thấy 'sub' (user_id) trong payload của token.\");",
+							"        }",
+							"    } catch (e) {",
+							"        console.error(\"Lỗi khi giải mã token:\", e);",
+							"    }",
 							"} else {",
-							"    console.error(\"Đăng nhập thất bại hoặc không tìm thấy token trong response.\");",
+							"    console.error(\"Không tìm thấy access_token trong response.\");",
 							"}",
 							""
 						],
@@ -35,7 +57,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"email\": \"customer@practicesoftwaretesting.com\",\n  \"password\": \"welcome01\"\n}",
+					"raw": "{\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -146,7 +168,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n  \"user_id\": {{user_id}},\n  \"billing_address\": \"{{billing_address}}\",\n  \"billing_city\": \"{{billing_city}}\",\n  \"billing_country\": \"{{billing_country}}\",\n  \"billing_state\": \"{{billing_state}}\",\n  \"billing_postcode\": \"{{billing_postcode}}\",\n  \"total\": {{calculated_total}},\n  \"payment_method\": \"Cash on Delivery\",\n  \"payment_account_name\": \"John Doe\",\n  \"payment_account_number\": \"0987654345\",\n  \"invoice_items\": [\n    {\n      \"product_id\": {{product_id}},\n      \"quantity\": {{quantity}},\n      \"unit_price\": {{unit_price}}\n    }\n  ]\n}",
+					"raw": "{\n  \"user_id\": {{user_id}},\n  \"billing_address\": \"{{billing_address}}\",\n  \"billing_city\": \"{{billing_city}}\",\n  \"billing_country\": \"{{billing_country}}\",\n  \"billing_state\": \"{{billing_state}}\",\n  \"billing_postcode\": \"{{billing_postcode}}\",\n  \"total\": {{calculated_total}},\n  \"payment_method\": \"{{payment_method}}\",\n  \"payment_account_name\": \"{{payment_account_name}}\",\n  \"payment_account_number\": \"{{payment_account_number}}\",\n  \"invoice_items\": [\n    {\n      \"product_id\": {{product_id}},\n      \"quantity\": {{quantity}},\n      \"unit_price\": {{unit_price}}\n    }\n  ]\n}",
 					"options": {
 						"raw": {
 							"language": "json"

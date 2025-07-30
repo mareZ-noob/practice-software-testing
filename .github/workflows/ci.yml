@@ -66,8 +66,8 @@ jobs:
     # TODO (Bạn thêm code ở dưới đây)
     - name: Run Newman Tests 🚀
       run: |
-        newman run collection.json \
-            -d dat.csv \
+        newman run collection1.json \
+            -d dat1.csv \
             -r htmlextra \
             --reporter-htmlextra-export report.html \
             --suppress-exit-code
