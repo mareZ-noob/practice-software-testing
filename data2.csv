@@ -1,6 +1,6 @@
-q,email,password
-pliers,customer@practicesoftwaretesting.com,welcome01
-hammer,customer@practicesoftwaretesting.com,welcome01
-saw,customer2@practicesoftwaretesting.com,welcome01
-cordless,customer2@practicesoftwaretesting.com,welcome01
-sander,customer2@practicesoftwaretesting.com,welcome01
+testName,email,password,q,expectedStatusCode
+"Success - Search by dynamic Invoice Number",customer@practicesoftwaretesting.com,welcome01,DYNAMIC_INV_NO,200
+"Success - Search by Status 'COMPLETED'",customer@practicesoftwaretesting.com,welcome01,COMPLETED,200
+"Success - Search with no results",customer@practicesoftwaretesting.com,welcome01,NonExistentTermAbc123,200
+"Fail - Missing search query 'q'",customer@practicesoftwaretesting.com,welcome01,,422
+"Fail - Unauthorized Search",bad@email.com,badpassword,some_query,401

@@ -1,51 +1,19 @@
-billing_address,billing_city,billing_country,billing_state,billing_postcode,payment_method,payment_account_name,payment_account_number,quantity,email,password
-375 Crowley Center,Miami,United States,Florida,33180,Bank Transfer,Emelda Ambrodi,3529278133506244,4,customer2@practicesoftwaretesting.com,welcome01
-35682 Hudson Road,Austin,United States,Texas,78778,Bank Transfer,Adham Matyushenko,5602243146198798643,10,customer2@practicesoftwaretesting.com,welcome01
-622 Packers Drive,Levittown,United States,Pennsylvania,19058,Buy Now Pay Later,Lindy Collumbine,5007664298374740,10,customer2@practicesoftwaretesting.com,welcome01
-59126 Havey Trail,Memphis,United States,Tennessee,38161,Gift Card,Tedie Dieton,3554117863264772,6,customer@practicesoftwaretesting.com,welcome01
-5 Nancy Place,Birmingham,United States,Alabama,35215,Cash on Delivery,Erskine Airdrie,3556876721530108,3,customer2@practicesoftwaretesting.com,welcome01
-2 Nancy Street,Kalamazoo,United States,Michigan,49048,Cash on Delivery,Rebecka Meininger,6334188318228117252,10,customer2@practicesoftwaretesting.com,welcome01
-9983 Texas Road,Atlanta,United States,Georgia,30380,Buy Now Pay Later,Cristobal Benedettini,3564207009987481,5,customer2@practicesoftwaretesting.com,welcome01
-26 Independence Way,Washington,United States,District of Columbia,20508,Gift Card,Bartholomeus Skettles,3582832856657453,7,customer2@practicesoftwaretesting.com,welcome01
-234 Sutteridge Drive,Staten Island,United States,New York,10305,Buy Now Pay Later,Allistir Jaumet,060455432711966290,7,customer@practicesoftwaretesting.com,welcome01
-6721 Talisman Road,Des Moines,United States,Iowa,50310,Cash on Delivery,Spike Cornillot,3534758764331494,1,customer2@practicesoftwaretesting.com,welcome01
-290 Gerald Street,Denver,United States,Colorado,80209,Credit Card,Valery Trubshawe,201715943271726,9,customer@practicesoftwaretesting.com,welcome01
-9 Barnett Place,Houston,United States,Texas,77070,Bank Transfer,Chip Saltrese,675922643030014238,2,customer2@practicesoftwaretesting.com,welcome01
-791 Thackeray Park,Tallahassee,United States,Florida,32399,Buy Now Pay Later,Suki Ellacombe,30578097657992,1,customer@practicesoftwaretesting.com,welcome01
-98327 Gale Plaza,Los Angeles,United States,California,90035,Buy Now Pay Later,Calli Warnock,676799269825194247,5,customer2@practicesoftwaretesting.com,welcome01
-73917 Dunning Place,Kansas City,United States,Missouri,64160,Bank Transfer,Benita Drohun,3570426802642109,10,customer@practicesoftwaretesting.com,welcome01
-002 Morrow Hill,Boston,United States,Massachusetts,02216,Credit Card,Delainey Di Dello,201447888298700,5,customer2@practicesoftwaretesting.com,welcome01
-30514 Chive Center,New Orleans,United States,Louisiana,70116,Bank Transfer,Joanie Niblett,633314201719340179,5,customer2@practicesoftwaretesting.com,welcome01
-133 Montana Alley,Charleston,United States,South Carolina,29416,Bank Transfer,Katrina Gipp,676788424023203257,4,customer2@practicesoftwaretesting.com,welcome01
-939 Dovetail Circle,Sunnyvale,United States,California,94089,Cash on Delivery,Delilah Readings,6304384618246488196,9,customer@practicesoftwaretesting.com,welcome01
-81 Spaight Court,Pensacola,United States,Florida,32520,Cash on Delivery,Marice Divine,201624356676761,6,customer@practicesoftwaretesting.com,welcome01
-525 Haas Point,Lexington,United States,Kentucky,40586,Gift Card,Maury Thompson,3529442602620247,6,customer@practicesoftwaretesting.com,welcome01
-57342 Cascade Hill,Jackson,United States,Mississippi,39282,Cash on Delivery,Rikki Skeldon,3582282755828740,4,customer@practicesoftwaretesting.com,welcome01
-9 Judy Crossing,El Paso,United States,Texas,88579,Credit Card,Lilian Checchi,201849336260051,10,customer@practicesoftwaretesting.com,welcome01
-88716 Golf Course Junction,San Francisco,United States,California,94126,Buy Now Pay Later,Alyce Elgie,5259256590243155,2,customer@practicesoftwaretesting.com,welcome01
-8822 Acker Street,Richmond,United States,Virginia,23289,Bank Transfer,Carmen Bromby,5602219904792584,9,customer2@practicesoftwaretesting.com,welcome01
-136 Mosinee Park,Anchorage,United States,Alaska,99517,Buy Now Pay Later,Becka Laimable,3539751553346521,4,customer@practicesoftwaretesting.com,welcome01
-975 Darwin Center,Grand Rapids,United States,Michigan,49510,Buy Now Pay Later,Brody Betjes,3586105348501027,7,customer2@practicesoftwaretesting.com,welcome01
-8855 Mccormick Plaza,Tyler,United States,Texas,75705,Buy Now Pay Later,Katalin Elderkin,36861252238806,0,customer@practicesoftwaretesting.com,welcome01
-283 Walton Court,Omaha,United States,Nebraska,68110,Gift Card,Ellerey Leteurtre,3561231875095099,9,customer2@practicesoftwaretesting.com,welcome01
-18656 Corben Way,Kansas City,United States,Missouri,64142,Buy Now Pay Later,Sean Commin,5007669839697459,9,customer2@practicesoftwaretesting.com,welcome01
-37 Harbort Pass,Memphis,United States,Tennessee,38119,Credit Card,Harwell Child,6333987304032681076,5,customer@practicesoftwaretesting.com,welcome01
-1 Merry Pass,Des Moines,United States,Iowa,50305,Cash on Delivery,Yulma Coarser,6759190019162055,0,customer2@practicesoftwaretesting.com,welcome01
-6835 Hermina Alley,Topeka,United States,Kansas,66611,Bank Transfer,Gun Wetherell,4844745389233554,1,customer@practicesoftwaretesting.com,welcome01
-5205 Birchwood Hill,Seattle,United States,Washington,98175,Gift Card,Chaddy Le Grice,30100297585384,4,customer2@practicesoftwaretesting.com,welcome01
-13 Corry Crossing,South Bend,United States,Indiana,46614,Bank Transfer,Tiffany Fairbank,4026476869819544,8,customer2@practicesoftwaretesting.com,welcome01
-95551 Mitchell Junction,Gaithersburg,United States,Maryland,20883,Credit Card,Billie Richmond,30438238661413,8,customer@practicesoftwaretesting.com,welcome01
-5 Magdeline Park,Minneapolis,United States,Minnesota,55446,Cash on Delivery,Emanuel Pierrepoint,3536546190147701,1,customer@practicesoftwaretesting.com,welcome01
-86 Pond Crossing,London,United States,Kentucky,40745,Cash on Delivery,Robinet Kinvig,3529582822645324,5,customer2@practicesoftwaretesting.com,welcome01
-11 Stone Corner Center,Anniston,United States,Alabama,36205,Buy Now Pay Later,Maximilian Robak,3544065235613437,10,customer2@practicesoftwaretesting.com,welcome01
-41 Briar Crest Place,Minneapolis,United States,Minnesota,55436,Buy Now Pay Later,Benedict Treharne,4026952531076515,1,customer@practicesoftwaretesting.com,welcome01
-958 Mayfield Circle,Saint Joseph,United States,Missouri,64504,Buy Now Pay Later,Cass Wilmot,3559950669496155,6,customer2@practicesoftwaretesting.com,welcome01
-7241 Corben Junction,Houston,United States,Texas,77065,Bank Transfer,Jorge Hassewell,676151061471037206,10,customer@practicesoftwaretesting.com,welcome01
-54593 Bunker Hill Way,Austin,United States,Texas,78737,Bank Transfer,Silvia Craisford,3583200944998702,7,customer2@practicesoftwaretesting.com,welcome01
-1320 Dwight Place,Oklahoma City,United States,Oklahoma,73197,Buy Now Pay Later,Indira Haselgrove,30188538739282,10,customer@practicesoftwaretesting.com,welcome01
-6284 Morningstar Place,New York City,United States,New York,10079,Buy Now Pay Later,Hailey Allberry,6771978450594198,0,customer2@practicesoftwaretesting.com,welcome01
-5358 Stoughton Circle,Sacramento,United States,California,94207,Buy Now Pay Later,Lindsay Cecere,3582089388250519,0,customer@practicesoftwaretesting.com,welcome01
-0 Blaine Plaza,Columbus,United States,Ohio,43268,Gift Card,Liva Bermingham,372301629994262,7,customer2@practicesoftwaretesting.com,welcome01
-013 Ridgeview Hill,Muncie,United States,Indiana,47306,Buy Now Pay Later,Far Gager,3544214229697820,4,customer@practicesoftwaretesting.com,welcome01
-79 Golf Course Center,Daytona Beach,United States,Florida,32128,Gift Card,Jamesy Zambon,67639222694607696,9,customer2@practicesoftwaretesting.com,welcome01
-2 Miller Parkway,Shreveport,United States,Louisiana,71161,Buy Now Pay Later,Horacio Danilyuk,3577831522445498,4,customer@practicesoftwaretesting.com,welcome01
+testName,email,password,billing_address,billing_city,billing_country,billing_state,billing_postcode,payment_method,payment_account_name,payment_account_number,quantity,expectedStatusCode,override_product_id
+"Success - Customer 2 - Case 1",customer2@practicesoftwaretesting.com,welcome01,"375 Crowley Center",Miami,United States,Florida,33180,"Bank Transfer",Emelda Ambrodi,3529278133506244,4,201,
+"Success - Customer 2 - Case 2",customer2@practicesoftwaretesting.com,welcome01,"35682 Hudson Road",Austin,United States,Texas,78778,"Bank Transfer",Adham Matyushenko,5602243146198798643,10,201,
+"Success - Customer 2 - Case 3",customer2@practicesoftwaretesting.com,welcome01,"622 Packers Drive",Levittown,United States,Pennsylvania,19058,"Buy Now Pay Later",Lindy Collumbine,5007664298374740,10,201,
+"Success - Customer 1 - Case 1",customer@practicesoftwaretesting.com,welcome01,"59126 Havey Trail",Memphis,United States,Tennessee,38161,"Gift Card",Tedie Dieton,3554117863264772,6,201,
+"Success - Customer 2 - Case 4",customer2@practicesoftwaretesting.com,welcome01,"5 Nancy Place",Birmingham,United States,Alabama,35215,"Cash on Delivery",Erskine Airdrie,3556876721530108,3,201,
+"Success - Customer 2 - Case 5",customer2@practicesoftwaretesting.com,welcome01,"2 Nancy Street",Kalamazoo,United States,Michigan,49048,"Cash on Delivery",Rebecka Meininger,6334188318228117252,10,201,
+"Success - Customer 2 - Case 6",customer2@practicesoftwaretesting.com,welcome01,"9983 Texas Road",Atlanta,United States,Georgia,30380,"Buy Now Pay Later",Cristobal Benedettini,3564207009987481,5,201,
+"Success - Customer 2 - Case 7",customer2@practicesoftwaretesting.com,welcome01,"26 Independence Way",Washington,United States,District of Columbia,20508,"Gift Card",Bartholomeus Skettles,3582832856657453,7,201,
+"Success - Customer 1 - Case 2",customer@practicesoftwaretesting.com,welcome01,"234 Sutteridge Drive",Staten Island,United States,New York,10305,"Buy Now Pay Later",Allistir Jaumet,060455432711966290,7,201,
+"Success - Customer 2 - Case 8",customer2@practicesoftwaretesting.com,welcome01,"6721 Talisman Road",Des Moines,United States,Iowa,50310,"Cash on Delivery",Spike Cornillot,3534758764331494,1,201,
+"Fail - Invalid Login",invalid@user.com,badpassword,"123 Fake St",Nowhere,USA,NA,00000,"Bank Transfer",John Doe,12345,1,401,
+"Fail - Missing Billing Address",customer@practicesoftwaretesting.com,welcome01,"",Miami,United States,Florida,33180,"Bank Transfer",Jane Doe,54321,2,422,
+"Fail - Missing Payment Method",customer@practicesoftwaretesting.com,welcome01,"123 Bill St",Miami,United States,Florida,33180,"",Jane Doe,54321,3,422,
+"Fail - Negative Quantity",customer@practicesoftwaretesting.com,welcome01,"123 Bill St",Miami,United States,Florida,33180,"Bank Transfer",Jane Doe,54321,-5,422,
+"Fail - Zero Quantity",customer@practicesoftwaretesting.com,welcome01,"123 Bill St",Miami,United States,Florida,33180,"Bank Transfer",Jane Doe,54321,0,422,
+"Fail - Unauthenticated Request",,,123 Main St,Anytown,USA,CA,12345,"Bank Transfer",No Body,123,1,401,
+"Fail - Invalid Data Type for Total",customer@practicesoftwaretesting.com,welcome01,"123 Bill St",Miami,United States,Florida,33180,"Bank Transfer",Jane Doe,54321,abc,422,
+"Fail - Non-Existent Product ID",customer@practicesoftwaretesting.com,welcome01,"123 Bill St",Miami,United States,Florida,33180,"Bank Transfer",Jane Doe,54321,1,404,99999

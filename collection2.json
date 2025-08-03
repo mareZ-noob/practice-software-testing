@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "f2db3a53-cd32-4de6-a115-a60fc65f219c",
-		"name": "API2",
+		"_postman_id": "37eeef42-d7a8-4248-8102-fa1f48793a50",
+		"name": "API2 - TC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21686506"
 	},
@@ -13,42 +13,18 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const responseData = pm.response.json();",
+							"// Clear old variables to ensure a clean run for each iteration",
+							"pm.environment.unset(\"auth_token\");",
+							"pm.environment.unset(\"dynamic_invoice_number\");",
 							"",
-							"// 1. Lưu access_token để xác thực",
-							"if (responseData.access_token) {",
-							"    const accessToken = responseData.access_token;",
-							"    pm.environment.set(\"auth_token\", accessToken);",
-							"    console.log(\"Đã lưu token xác thực.\");",
-							"",
-							"    try {",
-							"        // 2. Tách token thành 3 phần (Header, Payload, Signature)",
-							"        const tokenParts = accessToken.split('.');",
-							"        ",
-							"        // 3. Lấy phần payload (phần ở giữa) và giải mã Base64",
-							"        // Hàm atob() có sẵn trong Postman để giải mã Base64",
-							"        const payload = JSON.parse(atob(tokenParts[1]));",
-							"",
-							"        // 4. Trích xuất giá trị 'sub' (chính là user ID) từ payload",
-							"        const userId = payload.sub;",
-							"",
-							"        // 5. Lưu user_id vào biến môi trường",
-							"        if (userId) {",
-							"            pm.environment.set(\"user_id\", userId);",
-							"            console.log(`Đã lưu user_id: ${userId}`);",
-							"        } else {",
-							"            console.error(\"Không tìm thấy 'sub' (user_id) trong payload của token.\");",
-							"        }",
-							"    } catch (e) {",
-							"        console.error(\"Lỗi khi giải mã token:\", e);",
+							"if (pm.response.code === 200) {",
+							"    const responseData = pm.response.json();",
+							"    if (responseData.access_token) {",
+							"        pm.environment.set(\"auth_token\", responseData.access_token);",
 							"    }",
-							"} else {",
-							"    console.error(\"Không tìm thấy access_token trong response.\");",
-							"}",
-							""
+							"}"
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -80,16 +56,23 @@
 			"response": []
 		},
 		{
-			"name": "Search Invoices",
+			"name": "Get First Invoice Number",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"// This step gets a real, existing invoice number to use for a search test.",
+							"if (pm.response.code === 200) {",
+							"    const responseData = pm.response.json();",
+							"    if (responseData.data && responseData.data.length > 0) {",
+							"        const firstInvoiceNumber = responseData.data[0].invoice_number;",
+							"        pm.environment.set(\"dynamic_invoice_number\", firstInvoiceNumber);",
+							"        console.log(`Saved dynamic invoice number for search: ${firstInvoiceNumber}`);",
+							"    }",
+							"}"
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -107,7 +90,85 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:8091/invoices/search?q={{q}}",
+					"raw": "http://localhost:8091/invoices",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"invoices"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search Invoices",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"// This script dynamically sets the search query before the request is sent.",
+							"let searchQuery = pm.iterationData.get(\"q\");",
+							"",
+							"// Check for our special keyword to use the dynamic invoice number.",
+							"if (searchQuery === 'DYNAMIC_INV_NO') {",
+							"    searchQuery = pm.environment.get('dynamic_invoice_number') || 'fallback_if_not_found';",
+							"}",
+							"",
+							"// Set a local variable that the URL can use.",
+							"pm.variables.set('searchQueryVar', searchQuery);"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"const expectedStatusCode = pm.iterationData.get(\"expectedStatusCode\");",
+							"const testName = pm.iterationData.get(\"testName\");",
+							"",
+							"pm.test(`${testName} - Status code is ${expectedStatusCode}`, function () {",
+							"    pm.response.to.have.status(parseInt(expectedStatusCode));",
+							"});",
+							"",
+							"if (pm.response.code === 200) {",
+							"    const jsonData = pm.response.json();",
+							"    if (testName.includes(\"no results\")) {",
+							"        pm.test(\"Response data array should be empty\", function() {",
+							"            pm.expect(jsonData.data).to.be.an('array').with.lengthOf(0);",
+							"        });",
+							"    } else if (testName.includes(\"dynamic Invoice Number\")) {",
+							"        pm.test(\"Response contains exactly one result with the correct invoice number\", function() {",
+							"            const dynamicInvoiceNumber = pm.environment.get('dynamic_invoice_number');",
+							"            pm.expect(jsonData.data).to.be.an('array').with.lengthOf(1); // <-- MODIFIED LINE",
+							"            pm.expect(jsonData.data[0].invoice_number).to.eql(dynamicInvoiceNumber);",
+							"        });",
+							"    }",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{auth_token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8091/invoices/search?q={{searchQueryVar}}",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -120,7 +181,7 @@
 					"query": [
 						{
 							"key": "q",
-							"value": "{{q}}"
+							"value": "{{searchQueryVar}}"
 						}
 					]
 				}

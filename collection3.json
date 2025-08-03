@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "3c9acc7d-8c0c-4871-8687-d3a72415962c",
-		"name": "API3",
+		"_postman_id": "085269f8-1a64-4c2d-8e1a-060d97038326",
+		"name": "API3 - TC",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "21686506"
 	},
@@ -13,42 +13,31 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"const responseData = pm.response.json();",
+							"// Clear previous run's variables for a clean test",
+							"pm.environment.unset(\"auth_token\");",
+							"pm.environment.unset(\"logged_in_user_id\");",
 							"",
-							"// 1. Lưu access_token để xác thực",
-							"if (responseData.access_token) {",
-							"    const accessToken = responseData.access_token;",
-							"    pm.environment.set(\"auth_token\", accessToken);",
-							"    console.log(\"Đã lưu token xác thực.\");",
-							"",
-							"    try {",
-							"        // 2. Tách token thành 3 phần (Header, Payload, Signature)",
-							"        const tokenParts = accessToken.split('.');",
-							"        ",
-							"        // 3. Lấy phần payload (phần ở giữa) và giải mã Base64",
-							"        // Hàm atob() có sẵn trong Postman để giải mã Base64",
-							"        const payload = JSON.parse(atob(tokenParts[1]));",
-							"",
-							"        // 4. Trích xuất giá trị 'sub' (chính là user ID) từ payload",
-							"        const userId = payload.sub;",
-							"",
-							"        // 5. Lưu user_id vào biến môi trường",
-							"        if (userId) {",
-							"            pm.environment.set(\"user_id\", userId);",
-							"            console.log(`Đã lưu user_id: ${userId}`);",
-							"        } else {",
-							"            console.error(\"Không tìm thấy 'sub' (user_id) trong payload của token.\");",
+							"if (pm.response.code === 200) {",
+							"    const responseData = pm.response.json();",
+							"    if (responseData.access_token) {",
+							"        const accessToken = responseData.access_token;",
+							"        pm.environment.set(\"auth_token\", accessToken);",
+							"        console.log(\"Auth token saved.\");",
+							"        try {",
+							"            // Decode the JWT payload to get the user ID ('sub' claim)",
+							"            const payload = JSON.parse(atob(accessToken.split('.')[1]));",
+							"            const userId = payload.sub;",
+							"            if (userId) {",
+							"                pm.environment.set(\"logged_in_user_id\", userId);",
+							"                console.log(`Logged in user ID saved: ${userId}`);",
+							"            }",
+							"        } catch (e) {",
+							"            console.error(\"Error decoding token:\", e);",
 							"        }",
-							"    } catch (e) {",
-							"        console.error(\"Lỗi khi giải mã token:\", e);",
 							"    }",
-							"} else {",
-							"    console.error(\"Không tìm thấy access_token trong response.\");",
-							"}",
-							""
+							"}"
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -80,16 +69,52 @@
 			"response": []
 		},
 		{
-			"name": "Search Invoices",
+			"name": "Get All Invoices",
 			"event": [
 				{
-					"listen": "prerequest",
+					"listen": "test",
 					"script": {
 						"exec": [
-							""
+							"const expectedStatusCode = pm.iterationData.get(\"expectedStatusCode\");",
+							"const testName = pm.iterationData.get(\"testName\");",
+							"",
+							"pm.test(`${testName} - Status code is ${expectedStatusCode}`, function () {",
+							"    pm.response.to.have.status(parseInt(expectedStatusCode));",
+							"});",
+							"",
+							"// Only run deeper validation on successful responses",
+							"if (pm.response.code === 200) {",
+							"    const jsonData = pm.response.json();",
+							"",
+							"    // Test case: User should only see their own invoices",
+							"    if (testName.includes(\"User gets only their own\")) {",
+							"        const loggedInUserId = pm.environment.get(\"logged_in_user_id\");",
+							"        pm.test(\"All returned invoices belong to the logged-in user\", function () {",
+							"            let allMatch = true;",
+							"            if (!jsonData.data || jsonData.data.length === 0) {",
+							"                // If there are no invoices, the test passes trivially.",
+							"                return;",
+							"            }",
+							"            for (const invoice of jsonData.data) {",
+							"                if (invoice.user_id !== loggedInUserId) {",
+							"                    allMatch = false;",
+							"                    break; // Exit loop on first mismatch",
+							"                }",
+							"            }",
+							"            pm.expect(allMatch, \"Found an invoice belonging to another user\").to.be.true;",
+							"        });",
+							"    }",
+							"",
+							"    // Test case: Pagination",
+							"    if (testName.includes(\"Pagination test\")) {",
+							"        pm.test(\"Response is on the correct page\", function() {",
+							"             pm.expect(jsonData.current_page).to.eql(2);",
+							"             pm.expect(jsonData.per_page).to.eql(5);",
+							"        });",
+							"    }",
+							"}"
 						],
-						"type": "text/javascript",
-						"packages": {}
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -115,6 +140,13 @@
 					"port": "8091",
 					"path": [
 						"invoices"
+					],
+					"query": [
+						{
+							"key": "{{queryParams}}",
+							"value": null,
+							"disabled": true
+						}
 					]
 				}
 			},

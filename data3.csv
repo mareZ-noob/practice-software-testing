@@ -1,11 +1,5 @@
-email,password
-customer@practicesoftwaretesting.com,welcome01
-customer2@practicesoftwaretesting.com,welcome01
-customer2@practicesoftwaretesting.com,welcome01
-customer@practicesoftwaretesting.com,welcome01
-customer@practicesoftwaretesting.com,welcome01
-customer2@practicesoftwaretesting.com,welcome01
-customer@practicesoftwaretesting.com,welcome01
-customer2@practicesoftwaretesting.com,welcome01
-customer@practicesoftwaretesting.com,welcome01
-customer@practicesoftwaretesting.com,welcome01
+testName,email,password,queryParams,expectedStatusCode
+"Admin gets all invoices",admin@practicesoftwaretesting.com,welcome01,,200
+"User gets only their own invoices",customer@practicesoftwaretesting.com,welcome01,,200
+"Pagination test for admin",admin@practicesoftwaretesting.com,welcome01,page=2&per_page=5,200
+"Fail - Unauthorized access",bad@email.com,badpassword,,401
